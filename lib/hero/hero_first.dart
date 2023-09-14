@@ -3,15 +3,10 @@ import 'package:gridview_transitions/hero/hero_second.dart';
 
 import '../widgets/photo_widget.dart';
 
-class HeroFirst extends StatefulWidget {
+class HeroFirst extends StatelessWidget {
   HeroFirst({super.key});
 
-  @override
-  State<HeroFirst> createState() => _HeroFirstState();
-}
-
-class _HeroFirstState extends State<HeroFirst> {
-  void onTap(String name) {
+  void onTap(String name, BuildContext context) {
     print(name);
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return HeroSecond();
@@ -32,7 +27,7 @@ class _HeroFirstState extends State<HeroFirst> {
             String name = "tree${index + 2}";
             return PhotoWidget(
               onTap: () {
-                onTap(name);
+                onTap(name, context);
               },
               name: name,
             );

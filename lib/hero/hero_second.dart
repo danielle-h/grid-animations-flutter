@@ -2,15 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../widgets/photo_widget.dart';
 
-class HeroSecond extends StatefulWidget {
+class HeroSecond extends StatelessWidget {
   const HeroSecond({super.key});
 
-  @override
-  State<HeroSecond> createState() => _HeroSecondState();
-}
-
-class _HeroSecondState extends State<HeroSecond> {
-  void onTap(String name) {
+  void onTap(String name, BuildContext context) {
     print(name);
     Navigator.of(context).pop();
   }
@@ -29,7 +24,7 @@ class _HeroSecondState extends State<HeroSecond> {
             String name = "tree${index + 1}";
             return PhotoWidget(
               onTap: () {
-                onTap(name);
+                onTap(name, context);
               },
               name: name,
             );
