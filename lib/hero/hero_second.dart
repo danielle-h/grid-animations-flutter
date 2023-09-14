@@ -19,7 +19,7 @@ class _HeroSecondState extends State<HeroSecond> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: const Text("Second")),
+        appBar: AppBar(title: const Text("Hero the second")),
         body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,

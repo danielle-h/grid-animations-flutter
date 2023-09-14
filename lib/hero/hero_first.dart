@@ -22,7 +22,7 @@ class _HeroFirstState extends State<HeroFirst> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: const Text("First")),
+        appBar: AppBar(title: const Text("Hero the first")),
         body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
