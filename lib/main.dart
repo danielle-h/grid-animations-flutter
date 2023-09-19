@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gridview_transitions/animated/animated_pos.dart';
 import 'package:gridview_transitions/hero/hero_first.dart';
+import 'package:gridview_transitions/none/no_anim.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,12 +54,26 @@ class MyHomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
+                        return NoAnimationExample();
+                      }));
+                    },
+                    child: const Text("None")),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
                         return HeroFirst();
                       }));
                     },
                     child: const Text("Hero")),
                 ElevatedButton(
-                    onPressed: () {}, child: const Text("AnimatedPositioned")),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return AnimatedPosExample();
+                      }));
+                    },
+                    child: const Text("AnimatedPositioned")),
                 ElevatedButton(onPressed: () {}, child: const Text("Flow")),
               ]),
         ),
