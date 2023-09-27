@@ -7,19 +7,16 @@ class PhotoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: name,
-      child: Material(
-          child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Image.asset(
-            'images/$name.jpg',
-            fit: BoxFit.contain,
-          ),
+    return Material(
+        child: InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Image.asset(
+          'images/$name.jpg',
+          fit: BoxFit.contain,
         ),
-      )),
-    );
+      ),
+    ));
   }
 }

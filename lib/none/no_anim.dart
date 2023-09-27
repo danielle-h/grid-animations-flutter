@@ -12,9 +12,6 @@ class _NoAnimationExampleState extends State<NoAnimationExample>
     with SingleTickerProviderStateMixin {
   late TabController controller;
   int _currentIndex = 0;
-  int crossCount = 2;
-  Duration animationDuration = const Duration(milliseconds: 500);
-  double dimension = 0;
 
   @override
   void initState() {
@@ -23,7 +20,6 @@ class _NoAnimationExampleState extends State<NoAnimationExample>
     controller.addListener(() {
       setState(() {
         _currentIndex = controller.index;
-        crossCount = _currentIndex == 0 ? 2 : 3;
       });
     });
     super.initState();
@@ -74,11 +70,11 @@ class _NoAnimationExampleState extends State<NoAnimationExample>
   @override
   Widget build(BuildContext context) {
     //get dimension of one item
-    dimension = MediaQuery.of(context).size.width / crossCount;
 
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
+            title: const Text("No animation"),
             bottom: TabBar(controller: controller, tabs: const [
               Tab(icon: Icon(Icons.home)),
               Tab(icon: Icon(Icons.star)),

@@ -10,11 +10,13 @@ class AnimatedPosExample extends StatefulWidget {
 
 class _AnimatedPosExampleState extends State<AnimatedPosExample>
     with SingleTickerProviderStateMixin {
+  //tab stuff
   late TabController controller;
   int _currentIndex = 0;
   int crossCount = 2;
-  Duration animationDuration = const Duration(milliseconds: 300);
+  Duration animationDuration = const Duration(milliseconds: 500);
   double dimension = 0;
+  Curve animationCurve = Curves.easeInCirc;
 
   @override
   void initState() {
@@ -47,6 +49,7 @@ class _AnimatedPosExampleState extends State<AnimatedPosExample>
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          title: const Text("Animated positioned"),
           bottom: TabBar(controller: controller, tabs: const [
             Tab(icon: Icon(Icons.home)),
             Tab(icon: Icon(Icons.star)),
@@ -55,52 +58,59 @@ class _AnimatedPosExampleState extends State<AnimatedPosExample>
         body: Stack(
           children: [
             AnimatedPositioned(
+                curve: animationCurve,
                 height: _currentIndex == 0 ? 0 : dimension,
-                top: 0, //_currentIndex == 0 ? -dimension : 0,
+                top: _currentIndex == 0 ? 0 : 0,
                 left: 0,
                 duration: animationDuration,
                 child: getItem(1)),
             AnimatedPositioned(
+                curve: animationCurve,
                 height: dimension,
                 top: 0,
                 left: _currentIndex == 0 ? 0 : dimension,
                 duration: animationDuration,
                 child: getItem(2)),
             AnimatedPositioned(
+                curve: animationCurve,
                 height: dimension,
                 top: 0,
                 left: _currentIndex == 0 ? dimension : dimension * 2,
                 duration: animationDuration,
                 child: getItem(3)),
             AnimatedPositioned(
+                curve: animationCurve,
                 height: dimension,
                 top: dimension,
                 left: 0,
                 duration: animationDuration,
                 child: getItem(4)),
             AnimatedPositioned(
-                //curve: Curves.ease,
+                curve: animationCurve,
                 height: dimension,
                 top: dimension,
                 left: dimension,
                 duration: animationDuration,
                 child: getItem(5)),
             AnimatedPositioned(
+                curve: animationCurve,
                 height: _currentIndex == 0 ? 0 : dimension,
-                top: dimension, //_currentIndex == 0 ? -dimension : 0,
-                left: dimension * 2,
+                top: _currentIndex == 0 ? 0 : dimension,
+                left: _currentIndex == 0 ? 0 : dimension * 2,
                 duration: animationDuration,
                 child: getItem(6)),
             AnimatedPositioned(
+                curve: animationCurve,
                 height: _currentIndex == 0 ? 0 : dimension,
-                top: dimension * 2, //_currentIndex == 0 ? -dimension : 0,
+                top: _currentIndex == 0 ? 0 : 2 * dimension,
                 left: 0,
                 duration: animationDuration,
                 child: getItem(7)),
             AnimatedPositioned(
+                curve: animationCurve,
                 height: _currentIndex == 0 ? 0 : dimension,
-                top: dimension * 2, //_currentIndex == 0 ? -dimension : 0,
-                left: dimension,
+                top: _currentIndex == 0 ? 0 : 2 * dimension,
+                left: _currentIndex == 0 ? 0 : dimension,
                 duration: animationDuration,
                 child: getItem(8)),
           ],

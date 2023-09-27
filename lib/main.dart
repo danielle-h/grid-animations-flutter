@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gridview_transitions/animated/animated_pos.dart';
+import 'package:gridview_transitions/flow/flow_example.dart';
 import 'package:gridview_transitions/hero/hero_first.dart';
 import 'package:gridview_transitions/none/no_anim.dart';
 
@@ -74,7 +75,14 @@ class MyHomePage extends StatelessWidget {
                       }));
                     },
                     child: const Text("AnimatedPositioned")),
-                ElevatedButton(onPressed: () {}, child: const Text("Flow")),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return FlowExample();
+                      }));
+                    },
+                    child: const Text("Flow")),
               ]),
         ),
       ),
