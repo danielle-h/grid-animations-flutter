@@ -10,7 +10,9 @@ class NoAnimationExample extends StatefulWidget {
 
 class _NoAnimationExampleState extends State<NoAnimationExample>
     with SingleTickerProviderStateMixin {
+  //controller for tab
   late TabController controller;
+  //current tab index
   int _currentIndex = 0;
 
   @override
@@ -19,6 +21,7 @@ class _NoAnimationExampleState extends State<NoAnimationExample>
 
     controller.addListener(() {
       setState(() {
+        //update current index
         _currentIndex = controller.index;
       });
     });
@@ -31,10 +34,12 @@ class _NoAnimationExampleState extends State<NoAnimationExample>
 
   @override
   void dispose() {
+    //don't forget to dispose of the controller
     controller.dispose();
     super.dispose();
   }
 
+  //grid with 4 items, cross axis count is 2
   Widget firstGrid() {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -51,6 +56,7 @@ class _NoAnimationExampleState extends State<NoAnimationExample>
     );
   }
 
+  //grid with 8 items, cross axis count is 3
   Widget secondGrid() {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -69,17 +75,17 @@ class _NoAnimationExampleState extends State<NoAnimationExample>
 
   @override
   Widget build(BuildContext context) {
-    //get dimension of one item
-
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
             title: const Text("No animation"),
+            //tab bar
             bottom: TabBar(controller: controller, tabs: const [
               Tab(icon: Icon(Icons.home)),
               Tab(icon: Icon(Icons.star)),
             ]),
           ),
+          //show different grid based on tab index
           body: _currentIndex == 0 ? firstGrid() : secondGrid()),
     );
   }

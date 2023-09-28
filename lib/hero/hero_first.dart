@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gridview_transitions/hero/hero_second.dart';
+import 'package:gridview_transitions/widgets/hero_photo_widget.dart';
 
 import '../widgets/photo_widget.dart';
 
+//first page, showing 2X2 grid
 class HeroFirst extends StatelessWidget {
-  HeroFirst({super.key});
+  const HeroFirst({super.key});
 
+  //tapping on any image will move to second page
   void onTap(String name, BuildContext context) {
-    print(name);
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return HeroSecond();
+      return const HeroSecond();
     }));
   }
 
@@ -25,7 +27,7 @@ class HeroFirst extends StatelessWidget {
           itemCount: 4,
           itemBuilder: (BuildContext context, int index) {
             String name = "tree${index + 2}";
-            return PhotoWidget(
+            return HeroPhotoWidget(
               onTap: () {
                 onTap(name, context);
               },

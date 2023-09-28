@@ -5,6 +5,7 @@ import 'package:vector_math/vector_math_64.dart' as vect;
 
 import '../widgets/photo_widget.dart';
 
+//Grid animation example using Flow widget
 class FlowExample extends StatefulWidget {
   const FlowExample({super.key});
 
@@ -14,57 +15,56 @@ class FlowExample extends StatefulWidget {
 
 class _FlowExampleState extends State<FlowExample>
     with SingleTickerProviderStateMixin {
-  late TabController controller;
+  //tab conroller
+  late TabController _controller;
+  //cross count in grid
   int crossCount = 2;
-  int _currentIndex = 0;
 
   @override
   void initState() {
-    controller = TabController(
-        length: 2, vsync: this, animationDuration: Duration(seconds: 1));
+    _controller = TabController(
+        length: 2, vsync: this, animationDuration: const Duration(seconds: 1));
 
-    controller.addListener(() {
+    _controller.addListener(() {
       setState(() {
-        _currentIndex = controller.index;
-        crossCount = _currentIndex == 0 ? 2 : 3;
+        crossCount = _controller.index == 0 ? 2 : 3;
       });
     });
     super.initState();
   }
 
-  Widget getItem(int index, double dimension) {
+  Widget getItem(int index) {
     return PhotoWidget(onTap: () {}, name: "tree$index");
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    double dimension = MediaQuery.of(context).size.width / crossCount;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Flow widget"),
-          bottom: TabBar(controller: controller, tabs: [
+          bottom: TabBar(controller: _controller, tabs: const [
             Tab(icon: Icon(Icons.home)),
             Tab(icon: Icon(Icons.science)),
           ]),
         ),
         body: Flow(
-          delegate: ButtonFlowDelegate(animation: controller.animation!),
+          delegate: ButtonFlowDelegate(animation: _controller.animation!),
           children: [
-            getItem(1, dimension),
-            getItem(2, dimension),
-            getItem(3, dimension),
-            getItem(4, dimension),
-            getItem(5, dimension),
-            getItem(6, dimension),
-            getItem(7, dimension),
-            getItem(8, dimension),
+            getItem(1),
+            getItem(2),
+            getItem(3),
+            getItem(4),
+            getItem(5),
+            getItem(6),
+            getItem(7),
+            getItem(8),
           ],
         ),
       ),
@@ -75,13 +75,13 @@ class _FlowExampleState extends State<FlowExample>
 class ButtonFlowDelegate extends FlowDelegate {
   ButtonFlowDelegate({required this.animation}) : super(repaint: animation);
 
-  final Animation<double> animation;
-
-  double crossCount = 0;
-  double dimension = 1;
-  int startCrossCount = 2;
-  int endCrossCount = 3;
-  double animValue = 0;
+  final Animation<double> animation; //this will animate the flow
+  //variables for internal use
+  double crossCount = 0; //how many columns in grid
+  double dimension = 1; //what is the size of each element
+  final int startCrossCount = 2; //crossCount in home page
+  final int endCrossCount = 3; // crossCount in star page
+  double animValue = 0; //the current animation value - for readability.
 
   @override
   bool shouldRepaint(ButtonFlowDelegate oldDelegate) {
@@ -90,18 +90,21 @@ class ButtonFlowDelegate extends FlowDelegate {
 
   @override
   void paintChildren(FlowPaintingContext context) {
-    double endX = 0.0;
-    double endY = 0.0;
-    int endRow = 0;
-    int startRow = 0;
-    int startCol = 0;
-    int endCol = 0;
+    //variables
     double startX = 0;
     double startY = 0;
+    double endX = 0.0;
+    double endY = 0.0;
+    int startRow = 0;
+    int startCol = 0;
+    int endRow = 0;
+    int endCol = 0;
+
     crossCount = animation.value + startCrossCount;
     dimension = context.size.width / crossCount;
     //use this if you want a special curve:
     //animValue = Curves.elasticIn.transform(animation.value);
+    //and this otherwise
     animValue = animation.value;
 
     for (int i = 0; i < context.childCount; ++i) {
@@ -125,14 +128,14 @@ class ButtonFlowDelegate extends FlowDelegate {
                   startX * (1 - animValue) + endX * animValue
                   //you can add your own "curve"
                   //+
-                  //(-40 * animation.value * animation.value +
-                  //40 * animation.value)
+                  //(-40 * animValue * animValue +
+                  //40 * animValue)
                   ,
                   startY * (1 - animValue) + endY * animValue
                   //you can add your own "curve"
                   //+
-                  //(-40 * animation.value * animation.value +
-                  // 40 * animation.value)
+                  //(-40 * animValue * animValue +
+                  // 40 * animValue)
                   ,
                   0),
               //no rotation:

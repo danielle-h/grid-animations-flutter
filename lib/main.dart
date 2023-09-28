@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+//Show buttons for the various options
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
@@ -55,7 +55,7 @@ class MyHomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return NoAnimationExample();
+                        return const NoAnimationExample();
                       }));
                     },
                     child: const Text("None")),
@@ -71,7 +71,7 @@ class MyHomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return AnimatedPosExample();
+                        return const AnimatedPosExample();
                       }));
                     },
                     child: const Text("AnimatedPositioned")),
@@ -79,7 +79,7 @@ class MyHomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return FlowExample();
+                        return const FlowExample();
                       }));
                     },
                     child: const Text("Flow")),

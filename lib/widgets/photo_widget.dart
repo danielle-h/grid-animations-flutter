@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//make clickable image widget
 class PhotoWidget extends StatelessWidget {
   const PhotoWidget({super.key, required this.onTap, required this.name});
   final VoidCallback onTap;
