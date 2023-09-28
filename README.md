@@ -15,6 +15,7 @@ In `lib` folder:
 - `animated` shows how to animate the transition using [AnimatedPositioned](https://api.flutter.dev/flutter/widgets/AnimatedPositioned-class.html) widget
 - `flow` shows how to animate the transition using the [Flow](https://api.flutter.dev/flutter/widgets/Flow-class.html) widget
 - `widgets` has the item shown in all grids
+- `main.dart` is a page showing buttons to go to each option.
 
 ## Issues
 
