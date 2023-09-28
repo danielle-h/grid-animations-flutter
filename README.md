@@ -1,4 +1,4 @@
-# gridview_transitions
+# Grid Animations in Flutter
 
 Example illustrating the use of Hero, AnimatedPositioned and Flow widgets to animate transition of widgets in a grid.
 
